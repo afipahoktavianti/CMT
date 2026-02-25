@@ -1164,7 +1164,7 @@ if(issue.source === "Konfirmasi Driver"){
   }else{
 
     document.getElementById("callBox").innerHTML = `
-      <div id="callStatus">🚨Alert Abnormality</div><br>
+      <div id="callStatus">📞Driver</div><br>
       <button class="call-btn" onclick="callDriver()">CALL DRIVER</button>
     `;
 
@@ -1705,7 +1705,7 @@ start = function(){
 
 function sendToGoogleSheet(data){
 
-fetch("https://script.google.com/macros/s/AKfycbyNFIfmw4mi0Q3f6rpzlIBvRrR65XppqPLZJNd-vosWVBjmdmFDmBFJHKULEtTvE3biLA/exec", {
+fetch("https://script.google.com/macros/s/AKfycbyF9hTJgnt8U_NGLzxzIpthCPIKcfdEz_LnVU3xm7uOgSekp4kBaOEmGQqHJ8p0fnz6/exec", {
 
 method: "POST",
 
@@ -1765,5 +1765,6 @@ issueDuration:"00:30"
 </script>
 </body>
 </html>
+
 
 
