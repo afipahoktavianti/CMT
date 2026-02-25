@@ -1705,16 +1705,43 @@ start = function(){
 
 function sendToGoogleSheet(data){
 
-fetch("https://script.google.com/macros/s/AKfycbyF9hTJgnt8U_NGLzxzIpthCPIKcfdEz_LnVU3xm7uOgSekp4kBaOEmGQqHJ8p0fnz6/exec", {
+const url = "https://api.sheetbest.com/sheets/2f2d070c-965b-4256-8e6b-bf856d646fc7";
 
-method: "POST",
+let row = {
 
+Nama: data.name,
+NPK: data.npk,
+Tanggal: data.date,
+
+Type_Issue1: data.detail[0]?.issue || "",
+Total_Score_Issue1: data.detail[0]?.totalScore || "",
+ResponseTime_Issue1:
+(data.detail[0]?.windowStart && data.detail[0]?.windowEnd)
+? data.detail[0].windowStart + "-" + data.detail[0].windowEnd : "",
+Durasi_Issue1: data.detail[0]?.issueDuration || "",
+
+Type_Issue2: data.detail[1]?.issue || "",
+Total_Score_Issue2: data.detail[1]?.totalScore || "",
+ResponseTime_Issue2:
+(data.detail[1]?.windowStart && data.detail[1]?.windowEnd)
+? data.detail[1].windowStart + "-" + data.detail[1].windowEnd : "",
+Durasi_Issue2: data.detail[1]?.issueDuration || "",
+
+Type_Issue3: data.detail[2]?.issue || "",
+Total_Score_Issue3: data.detail[2]?.totalScore || "",
+ResponseTime_Issue3:
+(data.detail[2]?.windowStart && data.detail[2]?.windowEnd)
+? data.detail[2].windowStart + "-" + data.detail[2].windowEnd : "",
+Durasi_Issue3: data.detail[2]?.issueDuration || ""
+
+};
+
+fetch(url,{
+method:"POST",
 headers:{
 "Content-Type":"application/json"
 },
-
-body: JSON.stringify(data)
-
+body:JSON.stringify(row)
 });
 
 }
@@ -1729,42 +1756,12 @@ body: JSON.stringify(data)
 <audio id="vibrateSound" loop>
   <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
 </audio>
-  <button onclick="testSend()" style="position:fixed;bottom:20px;right:20px;z-index:9999">
-TEST SEND
-</button>
 
 <script>
-function testSend(){
-
-fetch("PASTE_WEB_APP_URL_KAMU_DISINI", {
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body: JSON.stringify({
-name:"TEST USER",
-npk:"99999",
-date:new Date().toString(),
-finalScore:100,
-detail:[
-{
-issue:"TEST ISSUE",
-totalScore:100,
-windowStart:"00:00",
-windowEnd:"00:30",
-issueDuration:"00:30"
-}
-]
-})
-})
-.then(res=>res.text())
-.then(res=>alert("Response: "+res))
-.catch(err=>alert("Error: "+err));
-
-}
 </script>
 </body>
 </html>
+
 
 
 
